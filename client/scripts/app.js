@@ -1,19 +1,16 @@
 // YOUR CODE HERE:
 $(document).ready(function(){
-  var app = {
+  window.app = {
     server: 'https://api.parse.com/1/classes/chatterbox',
     init: function(){
       this.fetch();
-      // var that = this;
-      // setInterval(that.clearMessages, 999);
-      // setInterval(that.fetch, 1000);
+      setInterval(this.fetch.bind(this), 1000);
     },
     send: function(message){
       if (message === undefined) {
         var message = {};
-        $('.messageBox').val("test");
         message.text = $('.messageBox').val();
-        message.username = 'whatever';
+        message.username = $('.username').val();
         message.roomname = 'somewhere';
       }
       console.log(message);
@@ -24,7 +21,7 @@ $(document).ready(function(){
         data: JSON.stringify(message),
         contentType: 'application/json',
         success: function (data) {
-          console.log(data);
+          $('#message').val('');
           console.log('chatterbox: Message sent');
         },
         error: function (data) {
@@ -43,7 +40,7 @@ $(document).ready(function(){
         },
         contentType: 'application/json',
         success: function (data) {
-          console.log('success');
+          //console.log('success');
           that.addAllMessages(data.results);
         },
         error: function (data) {
@@ -60,7 +57,8 @@ $(document).ready(function(){
       $('#chats').append($message);
     },
     addAllMessages: function(allMessages) {
-      for (var i = 0; i < allMessages.length; i++) {
+      this.clearMessages();
+      for (var i = 0; i < 20; i++) {
         this.addMessage(allMessages[i]);
       }
     },
@@ -76,6 +74,13 @@ $(document).ready(function(){
   };
 
   app.init();
-  app.send();
-  app.fetch();
+
+
+  $('.send').on('click', function(){
+    app.send();
+  });
+
+
+
+
 });

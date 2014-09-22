@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>chatterbox</title>
+    <link rel="stylesheet" href="styles/win98.css">
     <link rel="stylesheet" href="styles/styles.css">
 
     <!-- dependencies -->
@@ -13,14 +14,28 @@
     <script src="scripts/app.js"></script>
   </head>
   <body>
-    <div id="main">
-      <h1>chatterbox</h1>
-      <!-- Your HTML goes here! -->
-      <div id="chats">
-        <ul class="messageContainer">
-        </ul>
+    <div id="main" class="win98">
+      <div class="window">
+        <div class="header">chatterbox</div>
+
+        <div id="chats" class="content">
+          <ul class="messageContainer">
+          </ul>
+        </div>
+        <label for="username">Username: </label>
+        <input type="text" id="username" class="username">
+        <br>
+        <label for="message">Message: </label>
+        <input type="text" id="message" class="messageBox">
+        <br>
+        <label for="roomname">Chat Room: </label>
+        <input type="text" id="roomname" class="roomname">
+        <button class='send'>Send</button>
       </div>
-      <input type="text" class="messageBox">
     </div>
+
+      <!-- Your HTML goes here! -->
+
+
   </body>
 </html>
