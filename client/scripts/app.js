@@ -22,17 +22,32 @@ var app = {
     });
   },
   fetch: function(){
-    $.get(this.server,{
-      contentType: 'application/json'
-    }, function(data) {
-      console.log(data);
+    var that = this;
+    $.ajax({
+      url: this.server,
+      type: 'GET',
+      contentType: 'application/json',
+      success: function (data) {
+        console.log('success');
+        that.addAllMessages(data.results);
+      },
+      error: function (data) {
+        console.error('chatterbox: failed to fetch');
+      }
     });
   },
   clearMessages: function(){
-
+    $('#chats').html('');
   },
   addMessage: function(message) {
-
+    var $message = $('<li></li>');
+    $message.html(message.username + ': ' + message.text);
+    $('#chats').append($message);
+  },
+  addAllMessages: function(allMessages) {
+    for (var i = 0; i < allMessages.length; i++) {
+      this.addMessage(allMessages[i]);
+    }
   },
   addRoom: function(room) {
 
@@ -44,3 +59,4 @@ var app = {
 
   }
 };
+app.fetch();
