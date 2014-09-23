@@ -52,9 +52,11 @@ $(document).ready(function(){
       $('#chats').html('');
     },
     addMessage: function(message) {
-      var $message = $('<li></li>');
-      $message.text(message.username + ': ' + message.text);
-      $('#chats').append($message);
+      if (message.text.length < 400) {
+        var $message = $('<li></li>');
+        $message.text(message.username + ': ' + message.text);
+        $('#chats').append($message);
+      }
     },
     addAllMessages: function(allMessages) {
       this.clearMessages();
