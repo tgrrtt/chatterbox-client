@@ -41,7 +41,6 @@ $(document).ready(function(){
         },
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
-          //console.log('success');
           that.addAllMessages(data.results);
           that.addRooms(data.results);
         },
@@ -56,10 +55,8 @@ $(document).ready(function(){
     addMessage: function(message) {
       if (message.text.length < 400) {
         var $messageHolder = $('<div></div>');
-        //console.log(message.username);
         $username = $('<span class="username"></span>').text(message.username);
         $msgText = $('<span></span>').text(': ' +  message.text);
-        //$message.text(message.username + ': ' + message.text);
         $messageHolder.append($username);
         $messageHolder.append($msgText);
         $('#chats').append($messageHolder);
