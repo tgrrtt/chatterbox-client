@@ -1,51 +1,55 @@
 var Message = Backbone.Model.extend({
   initialize: function(data) {
     //console.log(data);
+    //console.log("yo");
     if (!data.username) {this.set('username', 'Anon');}
     if (!data.message) {this.set('message', '#YOLO');}
     if (!data.roomname) {this.set('roomname', 'Lobby');}
-    //console.log(this.get('username'));
   }
 });
+var MessageView = Backbone.View.extend({
+  render: function() {
+    var html = "<p>yo</p>";
 
-var Messages = Backbone.Collection.extend({
+  }
+});
+var MessageCollection = Backbone.Collection.extend({
   model: Message,
   url: 'https://api.parse.com/1/classes/chatterbox',
   initialize: function() {
     this.fetch({
       data: {
         order: '-createdAt'
-      },
-      success: function(collection, response, options) {
-        //console.log(response, "response");
       }
     });
   },
   parse: function(response) {
-    // if it's like {data: [model1, model2, model3...]}
     return response.results;
   }
 });
 
-
-
-var MessagesView = Backbone.View.extend({
+var MessageCollectionView = Backbone.View.extend({
+  el: '.messageContainer',
   initialize: function(){
+    this.collection.on('add', function(){
+
+      this.render();
+    }, this);
+    this.collection.on('change', function(){
+
+      this.render();
+    }, this);
   },
-  render: function(){}
+  render: function(){
+    this.collection.forEach(this.addOne, this);
+  },
+  addOne: function(message) {
+    var messageView = new MessageView({model: message});
+  }
 });
 
+var messages = new MessageCollection();
 
-// var myMessage = new Message('nick', 'test');
-// var myMessage2 = new Message('nick', 'test', 'other room');
+var messageCollectionView = new MessageCollectionView({collection: messages});
 
-var messages = new Messages();
 
-// messages.fetch({
-//   data: {
-//     order: '-createdAt'
-//   },
-//   success: function(collection, response, options) {
-//     console.log(response, "response");
-//   }
-// });
