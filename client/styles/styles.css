@@ -93,7 +93,10 @@ body {
 
     margin: auto;
 }
-
+.username {
+    color: blue;
+    font-weight: bold;
+}
 #chats {
     margin: 10px;
     height: 400px;
@@ -103,4 +106,8 @@ body {
     border-top: 2px solid grey;
     background-color: white;
     overflow: scroll;
+}
+
+.messageBox  {
+    width: 90%;
 }

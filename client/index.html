@@ -16,26 +16,26 @@
   <body>
     <div id="main" class="win98">
       <div class="window">
-        <div class="header">chatterbox</div>
+        <div class="header">AOL Instant Messenger</div>
 
         <div id="chats" class="content">
           <ul class="messageContainer">
           </ul>
         </div>
-        <label for="username">Username: </label>
-        <input type="text" id="username" class="username">
+        <label for="usernameBox">Username: </label>
+        <input type="text" id="usernameBox" class="usernameBox">
+        <label for="roomnameBox">Chat Room: </label>
+        <input type="text" id="roomnameBox" class="roomnameBox">
         <br>
-        <label for="message">Message: </label>
-        <input type="text" id="message" class="messageBox">
+        <label for="messageBox">Message: </label>
+        <input type="text-box" id="messageBox" class="messageBox">
         <br>
-        <label for="roomname">Chat Room: </label>
-        <input type="text" id="roomname" class="roomname">
-        <button class='send'>Send</button>
-        <select name="roomlist">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="opel">Opel</option>
-          <option value="audi">Audi</option>
+        <div id="send">
+          <submit class='send submit'>Send</submit>
+        </div>
+
+        <select name="roomlist" id="roomSelect">
+          <option value="lobby">Lobby</option>
         </select>
       </div>
 
